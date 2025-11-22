@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bollywood Recommender 🎥</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111;
+            color: #eee;
+            font-family: "Poppins", sans-serif;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        .movie-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .movie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+        }
+        .movie-poster {
+            border-radius: 10px;
+            height: 300px;
+            width: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .movie-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .movie-genre {
+            font-size: 0.85rem;
+            color: #ffcc00; /* ✅ Brighter gold for better contrast */
+            margin-bottom: 10px;
+        }
+        select {
+            border-radius: 5px;
+            padding: 4px;
+            background-color: #222;
+            color: #ffcc00;
+            border: 1px solid #444;
+        }
+        select:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 0 0 5px #ffcc00;
+        }
+        .rate-btn {
+            display: block;
+            width: 240px;
+            margin: 35px auto;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .rate-btn:hover {
+            background: #ffd633;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>⭐ Rate a few Bollywood movies ⭐</h2>
+        <form method="POST" action="/recommend">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
+                {% for movie in movies %}
+                <div class="col">
+                    <div class="movie-card">
+                        <img src="{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster">
+                        <div class="movie-title">{{ movie.title }}</div>
+                        <div class="movie-genre">{{ movie.genres }}</div>
+                        <label for="{{ movie.imdb_id }}">Your Rating:</label>
+                        <select name="{{ movie.imdb_id }}" id="{{ movie.imdb_id }}">
+                            <option value="">--</option>
+                            <option value="1">⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                        </select>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="rate-btn">🎬 Get Recommendations</button>
+        </form>
+    </div>
+
+</body>
+</html>

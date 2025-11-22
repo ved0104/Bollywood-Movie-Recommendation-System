@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f9f9f9;
+}
+h2 {
+  color: #333;
+}
+.movie {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #45a049;
+}

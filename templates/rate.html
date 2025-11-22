@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rate Movies</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Rate the following movies</h2>
+  <form action="{{ url_for('recommend') }}" method="POST">
+    {% for movie in movies %}
+      <div class="movie">
+        <label>{{ movie.title }}</label><br>
+        <select name="{{ movie.movieId }}">
+          <option value="">No Rating</option>
+          {% for i in range(1,6) %}
+            <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+      </div>
+    {% endfor %}
+    <button type="submit">Get Recommendations</button>
+  </form>
+</body>
+</html>
