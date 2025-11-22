@@ -1,26 +1,29 @@
-🎬 Bollywood Movie Recommendation System
-Hadoop + Spark MLlib + ALS + Flask UI
+# 🎬 Bollywood Movie Recommendation System
 
-A distributed movie recommendation system built on a multi-node Hadoop cluster, using HDFS for storage, Spark for distributed computing, ALS collaborative filtering (MLlib) for recommendations, and a Flask web UI for user interaction. The system processes Bollywood datasets (2010–2019), integrates text/meta/rating data, and delivers personalized recommendations with posters.
+### **Hadoop + Spark MLlib + ALS + Flask UI**
 
-🚀 Key Features
+A distributed movie recommendation system built on a **multi-node Hadoop cluster**, using **HDFS for storage**, **Spark for distributed computing**, **ALS collaborative filtering (MLlib)** for recommendations, and a **Flask web UI** for user interaction. The system processes Bollywood datasets (2010–2019), integrates text/meta/rating data, and delivers personalized recommendations with posters.
 
-Distributed Data Processing:
-ETL pipelines built with Pig & Hive, running on a multi-node HDFS cluster, processing 1M+ movie records.
+---
 
-Spark MLlib Recommender:
-Trained an ALS collaborative filtering model, achieving 92% item–user space coverage and high recommendation accuracy.
+## 🚀 **Key Features**
 
-Optimized for Scale:
-Partition tuning, caching strategies, and shuffle optimizations reduce training time by 55%.
+* **Distributed Data Processing:**
+  ETL pipelines built with **Pig & Hive**, running on a multi-node **HDFS cluster**, processing 1M+ movie records.
+* **Spark MLlib Recommender:**
+  Trained an **ALS collaborative filtering model**, achieving 92% item–user space coverage and high recommendation accuracy.
+* **Optimized for Scale:**
+  Partition tuning, caching strategies, and shuffle optimizations reduce training time by **55%**.
+* **Flask-based Web App:**
+  Users rate movies → system generates real-time recommendations with **posters** and **dynamic filtering**.
+* **Fallback Logic:**
+  When ALS cannot predict (cold start), system switches to a hybrid model using IMDb rating + genre correlation.
 
-Flask-based Web App:
-Users rate movies → system generates real-time recommendations with posters and dynamic filtering.
+---
 
-Fallback Logic:
-When ALS cannot predict (cold start), system switches to a hybrid model using IMDb rating + genre correlation.
+## 📁 **Project Architecture**
 
-📁 Project Architecture
+```
 +-------------------------+
 |        User (UI)        |
 +------------+------------+
@@ -50,62 +53,80 @@ When ALS cannot predict (cold start), system switches to a hybrid model using IM
 |             HDFS            |
 |  CSV + Parquet storage      |
 +-----------------------------+
+```
 
-⚙️ Tech Stack
-Big Data
+---
 
-Hadoop HDFS
+## ⚙️ **Tech Stack**
 
-Spark Core & Spark SQL
+### **Big Data**
 
-Spark MLlib (ALS)
+* Hadoop HDFS
+* Spark Core & Spark SQL
+* Spark MLlib (ALS)
+* Pig & Hive
 
-Pig & Hive
+### **Backend**
 
-Backend
+* Python
+* Flask
+* PySpark
 
-Python
+### **Frontend**
 
-Flask
+* HTML/CSS, Jinja2
 
-PySpark
+---
 
-Frontend
+## 📦 **Setup Instructions**
 
-HTML/CSS, Jinja2
+### **1️⃣ Start Hadoop Cluster**
 
-📦 Setup Instructions
-1️⃣ Start Hadoop Cluster
+```bash
 start-dfs.sh
 start-yarn.sh
+```
 
-2️⃣ Start Spark Cluster
+### **2️⃣ Start Spark Cluster**
+
+```bash
 $SPARK_HOME/sbin/start-master.sh
 $SPARK_HOME/sbin/start-worker.sh spark://master:7077
+```
 
-3️⃣ Upload Data to HDFS
+### **3️⃣ Upload Data to HDFS**
+
+```bash
 hdfs dfs -mkdir /spark_datasets/bolly_data
 hdfs dfs -put bollywood_*.csv /spark_datasets/bolly_data
+```
 
-4️⃣ Train ALS Model
+### **4️⃣ Train ALS Model**
+
+```bash
 python3 train_bolly_model.py
+```
 
-5️⃣ Run Flask UI
+### **5️⃣ Run Flask UI**
+
+```bash
 python3 app_bolly_ui.py
-
+```
 
 App runs at:
-📍 http://127.0.0.1:5000
- (local)
-📍 http://your-VM-ip:5000
- (external)
+📍 **[http://127.0.0.1:5000](http://127.0.0.1:5000)** (local)
+📍 **[http://your-VM-ip:5000](http://your-VM-ip:5000)** (external)
 
-🎯 Results
+---
 
-55% faster model training vs baseline Spark settings
+## 🎯 **Results**
 
-92% user–item coverage using ALS
+* **55% faster** model training vs baseline Spark settings
+* **92% user–item coverage** using ALS
+* **40% faster ETL** due to distributed Pig/Hive pipelines
+* **Real-time recommendations** via Flask with sub-second latency
 
-40% faster ETL due to distributed Pig/Hive pipelines
+---
 
-Real-time recommendations via Flask with sub-second latency
+
+Just tell me!
