@@ -78,6 +78,16 @@ A distributed movie recommendation system built on a **multi-node Hadoop cluster
 
 ---
 
+## 📦 **Dataset**
+
+The Bollywood movie datasets were sourced from Kaggle:
+🔗 **The Indian Movie Database** – [https://www.kaggle.com/datasets/pncnmnp/the-indian-movie-database](https://www.kaggle.com/datasets/pncnmnp/the-indian-movie-database)
+
+The raw files (metadata, ratings, summaries, cast, posters, etc.) were **ingested into HDFS** and then **merged using Apache Hive** into a unified, analytics-ready table.
+This Hive preprocessing step reduced data duplication by **~45%** and produced a clean **Parquet dataset** optimized for Spark MLlib training.
+
+---
+
 ## 📦 **Setup Instructions**
 
 ### **1️⃣ Start Hadoop Cluster**
